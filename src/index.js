@@ -2,10 +2,12 @@ const express = require("express");
 const app = express();
 const configViewEngine = require("./config/viewEngine");
 const webRoute = require("./routers/web");
-const mysql = require("mysql2");
-const connection = require("./config/database");
+
 require("dotenv").config();
 
+//config get from input
+app.use(express.json()); // for json
+app.use(express.urlencoded({ extended: true }));
 //config template
 configViewEngine(app);
 
@@ -15,9 +17,9 @@ app.use(webRoute);
 //Test Connection
 
 //query
-connection.query("Select * from Users", function (err, results, fields) {
-  console.log(results);
-});
+// connection.query("Select * from Users", function (err, results, fields) {
+//   console.log(results);
+// });
 //port
 
 const PORT = process.env.PORT;
