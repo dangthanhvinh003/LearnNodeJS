@@ -13,5 +13,5 @@ router.get("/", getHompage);
 //Uset
 router.get("/getAddUser", getAddUserPage);
 router.post("/CreateNewUser", postAddUser);
-router.get("/editUser", getEditUser);
+router.get("/editUser/:id", getEditUser);
 module.exports = router;

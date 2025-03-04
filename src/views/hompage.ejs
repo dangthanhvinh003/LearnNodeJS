@@ -17,6 +17,7 @@
 
     <table>
       <tr>
+        <th>ID</th>
         <th>Name</th>
         <th>Email</th>
         <th>Country</th>
@@ -25,10 +26,11 @@
       </tr>
       <% for(var i = 0; i < ListUser.length; i++) { %>
       <tr>
+        <td><%= ListUser[i].id %></td>
         <td><%= ListUser[i].name %></td>
         <td><%= ListUser[i].email %></td>
         <td><%= ListUser[i].city %></td>
-        <td><a href="/editUser">Edit</a></td>
+        <td><a href="/editUser/<%= ListUser[i].id %>">Edit</a></td>
         <td><a href="#">Delete</a></td>
       </tr>
       <% } %>

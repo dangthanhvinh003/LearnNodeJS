@@ -8,19 +8,20 @@
   <body>
     <div>
       <fieldset>
+        <%= JSON.stringify(userById)%>
         <form action="/CreateNewUser" method="POST">
           <legend>Edit USER</legend>
           <div>
             <span>Email</span>
-            <input type="text" name="email" />
+            <input type="text" name="email" value="<%= userById.email %>" />
           </div>
           <div>
             <span>Name</span>
-            <input type="text" name="name" />
+            <input type="text" name="name" value="<%= userById.name %>" />
           </div>
           <div>
             <span>Address </span>
-            <input type="text" name="address" />
+            <input type="text" name="address" value="<%= userById.city %>" />
           </div>
           <button type="submit">Edit</button>
         </form>

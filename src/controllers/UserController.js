@@ -17,17 +17,6 @@ const postAddUser = (req, res) => {
     }
   );
 };
-const getAllUser = (req, res) => {
-  connection.query(
-    `Select * from Users `,
-
-    function (err, results) {
-      console.log(results);
-      res.send("Create Succed");
-      console.log(err);
-    }
-  );
-};
 
 module.exports = {
   postAddUser,
