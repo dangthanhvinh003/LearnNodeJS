@@ -9,8 +9,14 @@
     <div>
       <fieldset>
         <%= JSON.stringify(userById)%>
-        <form action="/CreateNewUser" method="POST">
+        <form action="/editUser" method="POST">
           <legend>Edit USER</legend>
+          <input
+            type="text"
+            name="id"
+            value="<%= userById.id %>"
+            type="hidden"
+          />
           <div>
             <span>Email</span>
             <input type="text" name="email" value="<%= userById.email %>" />
