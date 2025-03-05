@@ -10,7 +10,8 @@ const getAllUserByID = async (id) => {
     "Select * from Users where id = (?)",
     [id]
   );
-  return results;
+  let user = results && results.length > 0 ? results : {};
+  return user;
 };
 module.exports = {
   getAllUser,

@@ -11,6 +11,7 @@ const getAddUserPage = (req, res) => {
 const getEditUser = async (req, res) => {
   let id = req.param("id");
   let getUserById = await getAllUserByID(id);
+  console.log(getUserById);
   res.render("EditUserPage", { userById: getUserById[0] }); // số 0 thể hiện rằng là phần tử đầu tiên trong mảng
 };
 module.exports = {
