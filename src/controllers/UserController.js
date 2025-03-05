@@ -24,7 +24,6 @@ const postEditUser = async (req, res) => {
   let email = req.body.email;
   let add = req.body.address;
 
-  console.log(name, email, add, id);
   await connection.query(
     `UPDATE Users
   SET name = ?, email = ?, city = ?
@@ -35,7 +34,18 @@ const postEditUser = async (req, res) => {
   res.redirect("/");
 };
 
+const getDeleteUser = async (req, res) => {
+  let id = req.param("id");
+  await connection.query(
+    `DELETE FROM Users WHERE id = ?;
+    `,
+    [id]
+  );
+  res.redirect("/");
+};
+
 module.exports = {
   postAddUser,
   postEditUser,
+  getDeleteUser,
 };

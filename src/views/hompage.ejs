@@ -31,7 +31,7 @@
         <td><%= ListUser[i].email %></td>
         <td><%= ListUser[i].city %></td>
         <td><a href="/editUser/<%= ListUser[i].id %>">Edit</a></td>
-        <td><a href="#">Delete</a></td>
+        <td><a href="/deleteUser/<%= ListUser[i].id %>">Delete</a></td>
       </tr>
       <% } %>
     </table>
