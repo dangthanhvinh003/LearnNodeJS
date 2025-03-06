@@ -7,6 +7,12 @@
   </head>
   <body>
     <div>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/getAddUser">Add User</a></li>
+      </ul>
+    </div>
+    <div>
       <fieldset>
         <%= JSON.stringify(userById)%>
         <form action="/editUser" method="POST">
