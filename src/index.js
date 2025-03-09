@@ -4,7 +4,7 @@ const configViewEngine = require("./config/viewEngine");
 const webRoute = require("./routers/web");
 const connection = require("./config/database");
 const mongoose = require("mongoose");
-const Kitten = require("./models/Kitten");
+
 require("dotenv").config();
 
 //config get from input
@@ -18,9 +18,9 @@ configViewEngine(app);
 app.use(webRoute);
 
 //Model DB
-const silence = new Kitten({ name: "Silence" });
-silence.save();
-console.log(silence.name); // 'Silence'
+// const silence = new Kitten({ name: "Silence" });
+// silence.save();
+// console.log(silence.name); // 'Silence'
 
 //Test Connection
 const PORT = process.env.PORT;

@@ -1,6 +1,6 @@
 const { getAllUser, getAllUserByID } = require("../services/CRUDSevice");
 const getHompage = async (req, res) => {
-  let results = await getAllUser();
+  let results = [];
   res.render("hompage", { ListUser: results });
 };
 
