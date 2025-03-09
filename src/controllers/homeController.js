@@ -1,6 +1,7 @@
-const { getAllUser, getAllUserByID } = require("../services/CRUDSevice");
+const { getAllUserByID } = require("../services/CRUDSevice");
+const User = require("../models/User");
 const getHompage = async (req, res) => {
-  let results = [];
+  let results = await User.find({});
   res.render("hompage", { ListUser: results });
 };
 
