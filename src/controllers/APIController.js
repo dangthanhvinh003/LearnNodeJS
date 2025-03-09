@@ -18,7 +18,24 @@ const postAddUserAPI = async (req, res) => {
     data: user,
   });
 };
+const putEditUserAPI = async (req, res) => {
+  let id = req.body.id;
+  let name = req.body.name;
+  let email = req.body.email;
+  let add = req.body.address;
+
+  let user = await User.updateOne(
+    { _id: id },
+    { name: name, email: email, city: add }
+  );
+
+  return res.status(200).json({
+    errCode: 0,
+    data: user,
+  });
+};
 module.exports = {
   getUsersAPI,
   postAddUserAPI,
+  putEditUserAPI,
 };
