@@ -10,7 +10,8 @@ const dbState = [
 const connection = async () => {
   // Or:
   try {
-    await mongoose.connect("mongodb://127.0.0.1:27017/test");
+    const option = { dbName: process.env.DB_Name };
+    await mongoose.connect("mongodb://127.0.0.1:27017", option);
     console.log("OK Nha");
     const state = Number(mongoose.connection.readyState);
     console.log(dbState.find((f) => f.value === state).label, "to db"); // connected to db
