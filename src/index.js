@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const configViewEngine = require("./config/viewEngine");
 const webRoute = require("./routers/web");
+const apiRoute = require("./routers/api");
 const connection = require("./config/database");
 const mongoose = require("mongoose");
 
@@ -15,8 +16,9 @@ app.use(express.urlencoded({ extended: true }));
 configViewEngine(app);
 
 //User Router
-app.use(webRoute);
-
+app.use("/", webRoute);
+//
+app.use("/v1/api/", apiRoute);
 //Model DB
 // const silence = new Kitten({ name: "Silence" });
 // silence.save();
