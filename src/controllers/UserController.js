@@ -9,7 +9,7 @@ const postAddUser = async (req, res) => {
   console.log(name, email, add);
 
   await User.create({ name: name, email: email, city: add });
-  res.send("Create Succed");
+  res.redirect("/");
 };
 
 const postEditUser = async (req, res) => {
@@ -25,11 +25,7 @@ const postEditUser = async (req, res) => {
 
 const getDeleteUser = async (req, res) => {
   let id = req.param("id");
-  await connection.query(
-    `DELETE FROM Users WHERE id = ?;
-    `,
-    [id]
-  );
+  await User.deleteOne({ _id: id });
   res.redirect("/");
 };
 
