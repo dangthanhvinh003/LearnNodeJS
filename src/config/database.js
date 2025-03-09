@@ -1,14 +1,22 @@
-const mysql = require("mysql2/promise"); // always init in herehere
+const mongoose = require("mongoose"); // always init in herehere
 require("dotenv").config();
-const connection = mysql.createPool({
-  host: process.env.DB_HOST,
-  user: process.env.DB_USER,
-  database: process.env.DB_NAME,
-  port: process.env.DB_PORT,
-  password: process.env.DB_PASSWORD,
-  waitForConnections: true,
-  connectionLimit: 10,
-  queueLimit: 0,
-});
+const dbState = [
+  { value: 0, label: "disconnected" },
+  { value: 1, label: "connected" },
+  { value: 2, label: "connecting" },
+  { value: 3, label: "disconnecting" },
+];
+
+const connection = async () => {
+  // Or:
+  try {
+    await mongoose.connect("mongodb://127.0.0.1:27017/test");
+    console.log("OK Nha");
+    const state = Number(mongoose.connection.readyState);
+    console.log(dbState.find((f) => f.value === state).label, "to db"); // connected to db
+  } catch (error) {
+    console.log("err : ", error);
+  }
+};
 
 module.exports = connection;
