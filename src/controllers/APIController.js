@@ -1,4 +1,6 @@
+const { name } = require("ejs");
 const User = require("../models/User");
+const jwt = require("jsonwebtoken");
 const getUsersAPI = async (req, res) => {
   let results = await User.find({});
   return res.status(200).json({
@@ -42,9 +44,23 @@ const getDeleteUser = async (req, res) => {
     data: result,
   });
 };
+const SECRET_KEY = "abcdefghjkl";
+const Auth = async (req, res) => {
+  const { name, email } = req.body;
+  let results = await User.find({ name: name, email: email });
+  if (results != null) {
+    const token = jwt.sign({ name }, process.env.SECRET_KEY, {
+      expiresIn: "1h",
+    });
+    return res.json({ token });
+  }
+
+  return res.status(401).json({ message: "Sai tài khoản hoặc mật khẩu" });
+};
 module.exports = {
   getUsersAPI,
   postAddUserAPI,
   putEditUserAPI,
   getDeleteUser,
+  Auth,
 };
