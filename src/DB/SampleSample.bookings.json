@@ -1,0 +1,36 @@
+[
+  {
+    "_id": {
+      "$oid": "67d81b44857e4e2eb24a7aed"
+    },
+    "customerId": {
+      "$oid": "67d811b4dfcc3717700b5d91"
+    },
+    "roomId": "1",
+    "checkInDate": {
+      "$date": "2025-03-17T00:00:00.000Z"
+    },
+    "checkOutDate": {
+      "$date": "2025-03-21T00:00:00.000Z"
+    },
+    "status": "confirmed",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "67d8217ffb2b5212578298bf"
+    },
+    "customerId": {
+      "$oid": "67d811b4dfcc3717700b5d91"
+    },
+    "roomId": "2",
+    "checkInDate": {
+      "$date": "2025-03-17T00:00:00.000Z"
+    },
+    "checkOutDate": {
+      "$date": "2025-03-21T00:00:00.000Z"
+    },
+    "status": "confirmed",
+    "__v": 0
+  }
+]

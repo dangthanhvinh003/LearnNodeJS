@@ -1,0 +1,24 @@
+[
+  {
+    "_id": {
+      "$oid": "67d811b4dfcc3717700b5d91"
+    },
+    "username": "a",
+    "password": "a",
+    "role": "admin",
+    "createAt": {
+      "$date": "2025-03-17T00:00:00.000Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67d81ebcdfcc3717700b5d97"
+    },
+    "username": "c",
+    "password": "c",
+    "role": "customer",
+    "createAt": {
+      "$date": "2025-03-17T00:00:00.000Z"
+    }
+  }
+]

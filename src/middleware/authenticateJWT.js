@@ -1,23 +1,21 @@
-require("dotenv").config();
 const jwt = require("jsonwebtoken");
 
-const authenticateJWT = (req, res, next) => {
-  console.log("Headers nhận được:", req.headers); // Log toàn bộ headers
+const authenticateJWT = (roles = []) => {
+  return (req, res, next) => {
+    const token = req.header("Authorization");
+    if (!token) return res.status(401).json({ message: "Access Denied" });
 
-  const token = req.header("Authorization")?.split(" ")[1];
-
-  console.log("Token nhận được:", token); // Kiểm tra token có đúng không
-
-  if (!token) return res.status(403).json({ message: "Unauthorized" });
-
-  jwt.verify(token, process.env.SECRET_KEY, (err, user) => {
-    if (err) {
-      console.log("Lỗi JWT:", err.message);
-      return res.status(403).json({ message: "Invalid token" });
+    try {
+      const decoded = jwt.verify(token, "abcdefghjkl");
+      if (!roles.includes(decoded.role)) {
+        return res.status(403).json({ message: "Forbidden" });
+      }
+      req.user = decoded;
+      next();
+    } catch (err) {
+      res.status(400).json({ message: "Invalid Token" });
     }
-    req.user = user;
-    next();
-  });
+  };
 };
 
 module.exports = authenticateJWT;

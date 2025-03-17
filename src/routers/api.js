@@ -3,22 +3,30 @@ const express = require("express");
 const routerAPI = express.Router();
 const authenticateJWT = require("../middleware/authenticateJWT.js");
 const {
-  getUsersAPI,
-  postAddUserAPI,
-  putEditUserAPI,
-  getDeleteUser,
-  Auth,
+  getBookingAPI,
+  postAddBookingAPI,
+  getBookingByDateAPI,
+  deleteBooking,
 } = require("../controllers/APIController.js");
+const Auth = require("../controllers/AuthController.js");
 
 //Test
 routerAPI.get("/", (req, res) => {
   res.send("Hello API");
 });
 
-routerAPI.get("/users", authenticateJWT, getUsersAPI);
+routerAPI.get("/bookings", authenticateJWT(["admin"]), getBookingAPI);
 
-routerAPI.post("/users", authenticateJWT, postAddUserAPI);
-routerAPI.put("/users", authenticateJWT, putEditUserAPI);
-routerAPI.delete("/users", authenticateJWT, getDeleteUser);
-routerAPI.post("/Auth", Auth);
+routerAPI.post("/bookings", authenticateJWT(["customer"]), postAddBookingAPI);
+routerAPI.get(
+  "/bookingsByDate",
+  authenticateJWT(["customer"]),
+  getBookingByDateAPI
+);
+routerAPI.delete(
+  "/bookings/:bookingId",
+  authenticateJWT(["customer"]),
+  deleteBooking
+);
+routerAPI.post("/auth/login", Auth);
 module.exports = routerAPI;
